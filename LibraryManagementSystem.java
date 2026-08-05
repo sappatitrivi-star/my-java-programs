@@ -58,12 +58,12 @@ class Books {
 
 
 class Person1 {
-    String name = "priya";
-    int age = 22;
+    String name = "trivikram";
+    int age = 18;
 }
 
 class Student1 extends Person1 {
-    int rollNo = 156;
+    int rollNo = 251;
 
     void displayStudent() {
         System.out.println("\nStudent Details");
@@ -151,10 +151,10 @@ public class LibraryManagementSystem {
     public static void main(String[] args) {
         Books b1 = new Books();
 
-        b1.setBookId(167);
+        b1.setBookId(251);
         b1.setBookName("Java Programming");
         b1.setAuthor("James Gosling");
-        b1.setPrice(599);
+        b1.setPrice(299);
 
         System.out.println("\nBook Details");
         b1.display();
@@ -171,7 +171,7 @@ public class LibraryManagementSystem {
 
         // Method Overloading
         Areas a = new Areas();
-        a.area(6);
+        a.area(5);
         a.area(10, 24);
         a.area(3.7);
 
