@@ -18,8 +18,8 @@ public class StudentUtilityProgram {
 
                     case 1:
                         System.out.println("Student Information");
-                        System.out.println("Name : Himanusha");
-                        System.out.println("Roll No : 101");
+                        System.out.println("Name : Trivikram");
+                        System.out.println("Roll No : 251");
                         break;
 
                     case 2:
