@@ -14,8 +14,7 @@ public class BasicThings {
 		int c = x+y;
 		System.out.println("THe result is: " + c);
 		
-//		bt.sample();
-		//object
+
 		BasicThings bt = new BasicThings();
 		System.out.println("variable: " + bt.a);
 		
