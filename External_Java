@@ -1,0 +1,77 @@
+// Employee class demonstrating Constructor Overloading
+class Employee {
+    // Attributes of the Employee class
+    String name;
+    int id;
+    String designation;
+    double salary;
+    String promotionStatus;
+
+    // Constructor 1: Initializes name, id, and designation (e.g., for Junior Developer)
+    Employee(String name, int id, String designation) {
+        this.name = name;
+        this.id = id;
+        this.designation = designation;
+        // Default values for uninitialized attributes
+        this.salary = 0.0;
+        this.promotionStatus = "Not Applicable";
+    }
+
+    // Constructor 2: Initializes name, id, designation, and salary (e.g., for Senior Developer)
+    Employee(String name, int id, String designation, double salary) {
+        this.name = name;
+        this.id = id;
+        this.designation = designation;
+        this.salary = salary;
+        // Default value for uninitialized attribute
+        this.promotionStatus = "Not Applicable";
+    }
+
+    // Constructor 3: Initializes all attributes including promotionStatus (e.g., for Project Manager)
+    Employee(String name, int id, String designation, double salary, String promotionStatus) {
+        this.name = name;
+        this.id = id;
+        this.designation = designation;
+        this.salary = salary;
+        this.promotionStatus = promotionStatus;
+    }
+
+    // Method to display the stored details of an employee
+    void displayEmployeeDetails() {
+        System.out.println("----------------------------------------");
+        System.out.println("Employee ID       : " + id);
+        System.out.println("Name              : " + name);
+        System.out.println("Designation       : " + designation);
+        
+        // Display salary only if it has been assigned (greater than 0)
+        if (salary > 0) {
+            System.out.println("Salary (INR)      : " + salary);
+        } else {
+            System.out.println("Salary (INR)      : Under Probation / Not Set");
+        }
+        
+        System.out.println("Promotion Status  : " + promotionStatus);
+        System.out.println("----------------------------------------");
+    }
+}
+
+// Main class to test constructor overloading across the three cadres
+public class EmployeeDataSystem {
+    public static void main(String[] args) {
+        System.out.println("=== IT Company HR Onboarding Records ===\n");
+
+        // Creating object for Junior Developer using Constructor 1 (3 parameters)
+        Employee juniorDev = new Employee("Aarav Sharma", 101, "Junior Developer");
+
+        // Creating object for Senior Developer using Constructor 2 (4 parameters)
+        Employee seniorDev = new Employee("Priya Nair", 102, "Senior Developer", 95000.00);
+
+        // Creating object for Project Manager using Constructor 3 (5 parameters)
+        Employee projectMgr = new Employee("Rohan Verma", 103, "Project Manager", 160000.00, "Promoted to Lead");
+
+        // Displaying details of each employee
+        juniorDev.displayEmployeeDetails();
+        seniorDev.displayEmployeeDetails();
+        projectMgr.displayEmployeeDetails();
+    }
+}
