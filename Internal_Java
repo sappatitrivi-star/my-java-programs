@@ -1,0 +1,104 @@
+import java.util.Scanner;
+
+// User-defined exception class extending Java's built-in Exception class
+class InsufficientBalanceException extends Exception {
+    // Constructor passing the custom error message to the parent Exception class
+    public InsufficientBalanceException(String message) {
+        super(message);
+    }
+}
+
+// BankAccount class representing a customer's bank account
+class BankAccount {
+    // Instance variables (attributes)
+    private String accountNumber;
+    private String accountHolderName;
+    private double balance;
+
+    // Parameterized constructor to initialize account details
+    public BankAccount(String accountNumber, String accountHolderName, double initialBalance) {
+        this.accountNumber = accountNumber;
+        this.accountHolderName = accountHolderName;
+        this.balance = initialBalance;
+    }
+
+    // Method to deposit money into the account
+    public void deposit(double amount) {
+        // Check if the deposit amount is positive
+        if (amount > 0) {
+            balance += amount;
+            System.out.println("Deposited: ₹" + amount);
+            System.out.println("Updated Balance: ₹" + balance);
+        } else {
+            System.out.println("Invalid deposit amount. Please enter a positive value.");
+        }
+    }
+
+    // Method to withdraw money; declares 'throws' because it may throw a checked custom exception
+    public void withdraw(double amount) throws InsufficientBalanceException {
+        if (amount <= 0) {
+            System.out.println("Invalid withdrawal amount. Please enter a positive value.");
+        } else if (amount > balance) {
+            // Throw the user-defined exception when withdrawal exceeds available balance
+            throw new InsufficientBalanceException(
+                "Withdrawal failed! Requested ₹" + amount + ", but available balance is only ₹" + balance
+            );
+        } else {
+            // Deduct amount and update balance
+            balance -= amount;
+            System.out.println("Successfully withdrew: ₹" + amount);
+            System.out.println("Remaining Balance: ₹" + balance);
+        }
+    }
+
+    // Method to display account summary
+    public void displayAccountDetails() {
+        System.out.println("\n--- Account Summary ---");
+        System.out.println("Account Number : " + accountNumber);
+        System.out.println("Account Holder : " + accountHolderName);
+        System.out.println("Current Balance: ₹" + balance);
+        System.out.println("-----------------------\n");
+    }
+}
+
+// Main class to execute and test the Bank Transaction System
+public class BankTransactionSystem {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Reading initial account details from the user
+        System.out.print("Enter Account Number: ");
+        String accNo = sc.nextLine();
+
+        System.out.print("Enter Account Holder Name: ");
+        String holderName = sc.nextLine();
+
+        System.out.print("Enter Initial Balance: ");
+        double initialBalance = sc.nextDouble();
+
+        // Creating a BankAccount object using the constructor
+        BankAccount account = new BankAccount(accNo, holderName, initialBalance);
+        account.displayAccountDetails();
+
+        // Performing a deposit operation
+        System.out.print("Enter amount to deposit: ");
+        double depAmount = sc.nextDouble();
+        account.deposit(depAmount);
+
+        // Performing a withdrawal operation inside a try-catch block
+        System.out.print("\nEnter amount to withdraw: ");
+        double withAmount = sc.nextDouble();
+
+        try {
+            // Attempt to withdraw the specified amount
+            account.withdraw(withAmount);
+        } catch (InsufficientBalanceException e) {
+            // Catch and handle the user-defined exception gracefully
+            System.out.println("Exception Caught: " + e.getMessage());
+        }
+
+        // Display final account status
+        account.displayAccountDetails();
+        sc.close();
+    }
+}
